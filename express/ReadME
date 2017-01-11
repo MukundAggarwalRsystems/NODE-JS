@@ -1,0 +1,10 @@
+This project runs on Nodejs.
+
+From command promt run command "node server.js" or "nodemon server.js".
+
+This file contains the structure of basic server that runs on localhost.
+GET request
+
+localhost:8081/all - To show the contents of the Json file.
+localhost:8081/add/?NAME/?Number - to add the ?NAME and ?NUMBER to the existing JSON file.
+localhost:8081/search/?NAME - To search the ?NAME in the exsiting JSON file and show the value of the name in response.
