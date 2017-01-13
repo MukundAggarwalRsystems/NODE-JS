@@ -12,6 +12,9 @@ var express = require('express');
 var data = fs.readFileSync('words.json');
 var words = JSON.parse(data);
 
+var myParser = require("body-parser");
+
+
 console.log('server is starting');
 console.log(words);
 
@@ -27,8 +30,31 @@ app.use(express.static('website'));
 
 //app.get('/search/:flower/:num', sendFlower);
 app.get('/add/:word/:score?', addWord);
+app.use(myParser.urlencoded({extended : false}));
+app.post('/show', function(req, res) {
+	var data = req.body.params;
+	
+	//var word = data.word;
+	//var score = data.score;
+    res.send('word: ' + data);
+	//res.send('Number: ' + score);
+});
+
 app.get('/all', sendAll);
+app.post('/all', sendAll);
 app.get('/search/:word/', searchWord);
+
+app.get('/gettest', function(req, resp){
+	var response = "Hello " + req.query.firstname;
+	console.log(response);
+	resp.end(response);
+});
+
+app.post('/posttest', function(req, resp){
+	var response = "Hello " + req.query.firstname;
+	console.log(response);
+	resp.end(response);
+});
 
 function searchWord(request, response){
 	
